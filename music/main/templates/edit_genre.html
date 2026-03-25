@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Редактирование жанра</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    
+    <button type="submit">Сохранить изменения</button>
+</form>
+<br>
+<a href="/genres/">Отмена</a>
+{% endblock %}

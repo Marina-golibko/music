@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+</head>
+<body>
+    <div id="wrapper">
+        <header id="header">
+            <dif class="navbar">
+                <a href="/" class="nav-item {% if tab == 'main' %}active{% endif %}">Главная</a>
+                <a href="/genres" class="nav-item {% if tab == 'genres' %}active{% endif %}">Жанры музыки</a>
+                <a href="/tracks" class="nav-item {% if tab == 'tracks' %}active{% endif %}">Треки</a>
+            </dif>
+        </header>
+
+        <main id="content">
+            {% block content %}
+                <h1>Убийца Spotify</h1>
+            {% endblock content %}
+        </main>
+
+        <footer id="footer">
+            footer
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+#wrapper {
+    width: 1000px;
+    margin: 30px auto;
+    border: 1px solid black;
+}
+
+#header {
+    height: 60px;
+    padding: 3px;
+    border: 1px solid black;
+}
+
+#content {
+    width: 100%;   /* Растянуто на всю ширину wrapper */
+    height: 700px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+#footer {
+    height: 60px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+table {
+    width: 100%; /* Ширина таблицы на весь экран */
+    border-collapse: collapse; /* Убирает двойные рамки между ячейками */
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd; /* Граница ячеек */
+    padding: 12px; /* Внутренние отступы */
+    text-align: left; /* Выравнивание текста */
+}
+
+table th {
+    background-color: #f2f2f2; /* Цвет фона заголовка */
+    color: #333;
+}
+
+/* Основная панель */
+.navbar {
+    display: flex;          /* Выстраиваем ссылки в ряд */
+    background-color: #2a6db1;
+    overflow: hidden;       /* Чтобы углы фона не вылезали */
+}
+
+/* Ссылка (элемент меню) */
+.nav-item {
+    color: white;
+    text-align: center;
+    padding: 17px 24px;     /* Отступы сверху/снизу и сбоку */
+    text-decoration: none;  /* Убираем подчеркивание */
+    font-size: 15px;
+    transition: 0.3s;       /* Плавная анимация цвета */
+}
+
+/* Эффект при наведении (как темный блок на твоем скрине) */
+.nav-item:hover {
+    background-color: #145999; /* Затемнение при наведении */
+    color: #ffffff;
+}
+
+/* Активная вкладка */
+.nav-item.active {
+    background-color: #1a252f; /* Выделяем текущую страницу */
+    font-weight: bold;
+}

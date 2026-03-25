@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Треки{% endblock title %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Длительность</th>
+                <th>Жанры</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tracks %}
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td>{{t.title}}</td>
+                    <td>{{t.duration}}</td>
+                    <td>
+                        {% for g in t.genres.all %}
+                            {{g.name_ru}}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="/edit_track/{{ t.id }}/">Редактировать</a>
+                    </td>
+                    <td>
+                        <a href="/delete_track/{{ t.id }}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="/add_track">Добавить трек</a></p>
+{% endblock content %}

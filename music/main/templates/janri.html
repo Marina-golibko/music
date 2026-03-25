@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Жанры{% endblock title %}
+{% block content %}
+    <table>
+        <!-- шапка таблицы -->
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Название на англ.</th>
+                <th>Описание</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <!-- тело таблицы -->
+        <tbody>
+            {% for g in genres %}
+                <tr>
+                    <td>{{ g.id }}</td>
+                    <td>{{ g.name_ru }}</td>
+                    <td>{{ g.name_en }}</td>
+                    <td>{{ g.description }}</td>
+                    <td>
+                        <a href="/edit_genre/{{ g.id }}/">Редактировать</a>
+                    </td>
+                    <td>
+                        <a href="/delete_genre/{{g.id}}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="/add_genre">Добавить жанр</a></p>
+{% endblock content %}
