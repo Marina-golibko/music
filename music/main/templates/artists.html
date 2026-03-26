@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Исполнители{% endblock title %}
+{% block content %}
+    <table>
+        <!-- шапка таблицы -->
+         <thead>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Фото</th>
+                <th></th>
+                <th></th>
+            </tr>
+         </thead>
+         <!-- тело таблицы -->
+          <tbody>
+            {% for a in artists %}
+                <tr>
+                    <td>{{a.id}}</td>
+                    <td>{{a.name}}</td>
+                    <td><img class="artist_logo" src="/media/{{a.image}}" alt=""></td>
+                    <td><a href=/editartist/{{a.id}}>Редактировать</a></td>
+                    <td><a href="/deleteartist/{{a.id}}">Удалить</a></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+    </table>
+    <a href="/add_artist">Добавить исполнителя</a>
+{% endblock content %}
