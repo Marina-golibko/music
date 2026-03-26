@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Genre, Track
-from .forms import GenreForm, TrackForm
+from .models import Genre, Track, Artist
+from .forms import GenreForm, TrackForm, ArtistForm
 
 # Create your views here.
 def main(request):
@@ -13,6 +13,10 @@ def genres_list(request):
 def tracks_list(request):
     tracks = Track.objects.all().prefetch_related('genres')
     return render(request, 'treki.html', {'tracks': tracks, 'tab': 'tracks'})
+
+def artists(request):
+    a = Artist.objects.all()
+    return render(request, 'artists.html', {'artists': a})
 
 # добавить жанр
 def add_genre(request):
