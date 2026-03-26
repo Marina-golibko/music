@@ -8,6 +8,14 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name_ru
+    
+# исполнитель (группа или человек)
+class Artist(models.Model):
+    name = models.CharField(max_length=500, unique=True)
+    image = models.ImageField(upload_to='artists/', null=True)
+
+    def __str__(self):
+        return self.name
 
 # музыкальные треки
 class Track(models.Model):
