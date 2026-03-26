@@ -20,8 +20,9 @@ class Artist(models.Model):
 # музыкальные треки
 class Track(models.Model):
     title = models.CharField(max_length=500, unique=True)
-    duration = models.IntegerField()
+    duration = models.IntegerField(help_text="Длительность в секундах")
     genres = models.ManyToManyField(Genre)
+    artist = models.ForeignKey(Artist, on_delete=models.RESTRICT, null=True)
 
     def __str__(self):
         return self.title

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Genre, Track
+from .models import Genre, Track, Artist
 
 class GenreForm(forms.ModelForm):
     class Meta:
@@ -19,4 +19,13 @@ class TrackForm(forms.ModelForm):
             'title': 'Название трека',
             'duration': 'Длительность',
             'genres': 'Жанры',
+        }
+
+class ArtistForm(forms.ModelForm):
+    class Meta:
+        model = Artist
+        fields = '__all__'
+        labels = {
+            'name': 'Имя / название',
+            'image': 'Фотография',
         }
