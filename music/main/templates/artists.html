@@ -18,7 +18,13 @@
                 <tr>
                     <td>{{a.id}}</td>
                     <td>{{a.name}}</td>
-                    <td><img class="artist_logo" src="/media/{{a.image}}" alt=""></td>
+                    <td>
+                        {% if a.image %}
+                            <img class="artist_logo" src="{{ a.image.url }}" alt="{{ a.name }}" style="width: 100px;">
+                        {% else %}
+                            <span>Нет фото</span>
+                        {% endif %}
+                    </td>
                     <td><a href=/editartist/{{a.id}}>Редактировать</a></td>
                     <td><a href="/deleteartist/{{a.id}}">Удалить</a></td>
                 </tr>

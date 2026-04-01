@@ -1,11 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Треки{% endblock title %}
 {% block content %}
+<!-- Выпадающий список для фильтрации -->
+    <form method="post">
+        {% csrf_token %}
+        <select name="artist" onchange="this.form.submit()">
+            <option value="">Все исполнители</option>
+            {% for artist in artists %}
+                {% if artist.id == current_artist.id %}
+                    <option value="{{artist.id}}" selected>{{artist}}</option>
+                {% else %}
+                    <option value="{{artist.id}}">{{artist}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
     <table>
         <thead>
             <tr>
                 <th>№</th>
                 <th>Название</th>
+                <th>Автор</th>
                 <th>Длительность</th>
                 <th>Жанры</th>
                 <th></th>
@@ -17,6 +32,13 @@
                 <tr>
                     <td>{{t.id}}</td>
                     <td>{{t.title}}</td>
+                    <td>
+                        {% if t.artist %}
+                            {{ t.artist.name }}
+                        {% else %}
+                            Не указан
+                        {% endif %}
+                    </td>
                     <td>{{t.duration}}</td>
                     <td>
                         {% for g in t.genres.all %}

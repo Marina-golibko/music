@@ -11,12 +11,25 @@ def genres_list(request):
     return render(request, 'janri.html', {'genres': genres, 'tab': 'genres'})
 
 def tracks_list(request):
-    tracks = Track.objects.all().prefetch_related('genres')
-    return render(request, 'treki.html', {'tracks': tracks, 'tab': 'tracks'})
+    #tracks = Track.objects.all().prefetch_related('genres')
+    # получим список треков из базы
+    t = Track.objects.all()
+    # получим список исполнителей
+    a = Artist.objects.all()
+    artist = None
+    # передали исполнителя
+    if request.method == "POST":
+        id_artist = request.POST.get('artist')
+        # Проверяем: если id_artist не пустой (выбран конкретный артист)
+        if id_artist: 
+            artist = Artist.objects.get(id=id_artist)
+            t = t.filter(artist=artist)
+        # Если id_artist пустой, блок выше пропустится и 't' останется Track.objects.all()
+    return render(request, 'treki.html', {'tracks': t, 'artists': a, 'current_artist': artist, 'tab': 'tracks'})
 
 def artists(request):
     a = Artist.objects.all()
-    return render(request, 'artists.html', {'artists': a})
+    return render(request, 'artists.html', {'artists': a, 'tab': 'artists'})
 
 # добавить жанр
 def add_genre(request):
@@ -87,4 +100,3 @@ def delete_track(request, id):
     track = get_object_or_404(Track, id=id)
     track.delete()
     return redirect('/tracks/')
-

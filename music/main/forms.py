@@ -14,9 +14,10 @@ class GenreForm(forms.ModelForm):
 class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
-        fields = ['title', 'duration', 'genres']
+        fields = ['title', 'artist', 'duration', 'genres']
         labels = {
             'title': 'Название трека',
+            'artist': 'Автор',
             'duration': 'Длительность',
             'genres': 'Жанры',
         }
